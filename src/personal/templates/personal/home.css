@@ -1,0 +1,159 @@
+.roundS{
+  width: 120px;
+  height: 120px;
+  padding: 10px;
+  border-radius: 50%;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  border: #ddd;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 8px 4px #ddd;
+  margin: auto;
+  color: black;
+}
+.collectR{
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+}
+.botmContainer{
+  padding: 70px;
+}
+
+.classif{
+  padding: 20px;
+  margin-top: 30px;
+}
+.subcli{
+  text-align: center;
+  font-size: 37px;
+  margin-bottom: 50px;
+}
+.imgmang{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap:100px;
+  justify-content: center;
+  padding: 40px 0px;
+
+}
+
+.imgmang img{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+.syapar{
+  width: 80%;
+  margin:auto;
+  /* display: grid;
+  grid-gap: 50px; */
+  display: flex;
+  align-items: center;
+
+}
+.syaparb{
+  max-width: 30%;
+  margin: auto;
+}
+
+
+.gridswapa{
+  flex-direction:row-reverse;
+}
+.hfbf{
+  margin-right: 70px;
+}
+.hfbfa{
+  margin-left: 70px;
+}
+
+img{
+  width: 100%;
+}
+
+/* .contain{
+  background-image: url("{% static "personal/undraw_address_udes.svg"%}");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+} */
+
+.contain{
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  margin: auto;
+}
+
+.location{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+  text-align: center;
+  margin-top: 20px;
+}
+/* .loca{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 5px;
+} */
+.loc{
+  width: 100px;
+  margin: auto;
+}
+p{
+  margin: 0px;
+}
+.byslt{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 70px;
+}
+.services{
+  text-align: center;
+}
+.nyck{
+  margin: auto;
+}
+
+@media(max-width: 1100px){
+.syapar{
+  display: block;
+  width: 100%;
+}
+.botmContainer{
+  display: none;
+}
+.syaparb{
+  max-width: 50%;
+  margin-bottom: 20px;
+}
+.syapara{
+  text-align: center;
+}
+.hfbf, .hfbfa{
+  margin: 0px;
+}
+.byslt{
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+}
+.nyck{
+  display: none;
+}
+.contain{
+  display: block;
+}
+.subcli{
+  margin-bottom: 30px;
+  font-size: 27px;
+}
+.classif{
+  padding: 10px;
+}
+}
