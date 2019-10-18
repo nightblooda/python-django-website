@@ -18,3 +18,10 @@ class Bill(models.Model):
 
     def __str__(self):
       return self.billno
+class Particulate(models.Model):
+  particulrs=models.CharField(max_length=200, null=False, blank=False)
+  rate=models.DecimalField(max_digits=13, decimal_places=2)
+  gst=models.DecimalField(max_digits=5, decimal_places=2)
+  quantity=models.DecimalField(max_digits=13, decimal_places=2)
+  sum=models.DecimalField(max_digits=13, decimal_places=2)
+  fid=models.ForeignKey(Bill, on_delete=models.CASCADE)
