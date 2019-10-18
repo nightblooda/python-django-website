@@ -89,3 +89,23 @@ def billing_view(request):
     return render(request, 'usersystem/billing.html', context)
   else:
     return redirect("home")
+
+def fullbill_view(request):
+  if request.POST:
+    return HttpResponse("OK")
+  else:
+    data = request.GET["bill"]
+    rooms = list(Particulate.objects.filter(fid=data).values())
+    d =  dict()
+    d['rooms'] = rooms
+    return JsonResponse(d)
+
+def deletebill_view(request):
+  if request.POST:
+    return HttpResponse("OK")
+  else:
+    data = request.GET["bill"]
+    Bill.objects.filter(billno=data).delete()
+    return HttpResponse("OK")
+
+
