@@ -23,10 +23,6 @@ def billing_view(request):
   if request.user.is_authenticated:
     context = {}
     if request.POST:
-      # fromJs = json.loads(request.body)
-      # print(fromJs[0]["particulars"])
-      # fromJs = json.loads(request.body)
-      # print(fromJs["menu"][0]["rate"])
       bills_instance = Bill()
       data = json.loads(request.body)
       if data["name"] is None:
@@ -80,10 +76,7 @@ def billing_view(request):
           particulate_instance.sum=m["amount"]
           particulate_instance.fid=bills_instance
           particulate_instance.save()
-          # print(m["particulars"])
-          # print(m["rate"])
-          # print(m["quantity"])
-          # print(m["total"])
+
 
       return HttpResponse("OK")    
       context["saving_data"]="fucked"
@@ -91,7 +84,6 @@ def billing_view(request):
     context["here"]="printhere"
     if request.GET:
       return redirect("home")
-    # bill_post = sorted(fetchbill(query),key=attrgetter('created_at'), reverse=True)
     bill_post = fetchbill(query)
     context['bill_post'] = bill_post
     return render(request, 'usersystem/billing.html', context)
