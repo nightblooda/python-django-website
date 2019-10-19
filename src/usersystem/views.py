@@ -109,3 +109,27 @@ def deletebill_view(request):
     return HttpResponse("OK")
 
 
+def fetchbill(query=None):
+  queryset = []
+  allset = []
+  bill = Bill.objects.filter(accountid=query).order_by('-created_at')
+  return bill
+
+def screen_view(request):
+
+  context = {}
+
+  query = ""
+  if request.GET:
+    query = request.GET['q']
+    context['query'] = str(query)
+
+  bill_post = sorted(fetchbill(query),key=attrgetter('created_at'), reverse=True)
+  context['bill_post'] = bill_post
+
+  #Pagination
+  
+
+  return render(request, "usersystem/billing.html", context)
+
+
