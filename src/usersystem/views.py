@@ -141,48 +141,27 @@ def report_view(request):
     m = data.split('-')
     userl = Account.objects.filter(email=request.user.email).first()
 
-    # cursor = connection.cursor()
-    # cursor.execute("Select billno from usersystem_bill ")
-    # result = cursor.fetchall()
-    # print(result)
-    # result = Bill.objects.filter(created_at__date=data, accountid=userl)
-    # print(result)
     customer = Bill.objects.filter(created_at__date=data, accountid=userl)
-    # customer_amount_d = customer.aggregate(Sum('total'))['total__sum']
     customer_amount_d = customer.aggregate(total_sum=Round(Sum('total')))['total_sum']
     customer_count_d = customer.count()
-    # print(customer_amount)
-    # print(customer_count)
     alignment = Bill.objects.filter(particulate__particulrs='Wheel Alignment', accountid=userl, created_at__date=data)
     alignment_count_d = alignment.count()
-    # alignment_amount_d = alignment.aggregate(Sum('particulate__sum'))['particulate__sum__sum']
     alignment_amount_d = alignment.aggregate(particulate_sum=Round(Sum('particulate__sum')))['particulate_sum']
-    # print(alignment_amount)
-    # print(alignment_count)
     washing = Bill.objects.filter(particulate__particulrs='Washing', accountid=userl, created_at__date=data)
     washing_count_d = washing.count()
-    # washing_amount_d = washing.aggregate(Sum('particulate__sum'))['particulate__sum__sum']
     washing_amount_d = washing.aggregate(particulate_sum=Round(Sum('particulate__sum')))['particulate_sum']
-    # labour_amount_d = Bill.objects.filter(particulate__particulrs='Labour', accountid=userl, created_at__date=data).aggregate(Sum('particulate__sum'))['particulate__sum__sum']
     labour_amount_d = Bill.objects.filter(particulate__particulrs='Labour', accountid=userl, created_at__date=data).aggregate(particulate_sum=Round(Sum('particulate__sum')))['particulate_sum']
 
 
 
     customer_m = Bill.objects.filter(created_at__month=m[1], accountid=userl)
-    # customer_amount_d = customer.aggregate(Sum('total'))['total__sum']
     customer_amount_m = customer_m.aggregate(total_sum=Round(Sum('total')))['total_sum']
     customer_count_m = customer_m.count()
-    # print(customer_amount)
-    # print(customer_count)
     alignment_m = Bill.objects.filter(particulate__particulrs='Wheel Alignment', accountid=userl, created_at__month=m[1])
     alignment_count_m = alignment_m.count()
-    # alignment_amount_d = alignment.aggregate(Sum('particulate__sum'))['particulate__sum__sum']
     alignment_amount_m = alignment_m.aggregate(particulate_sum=Round(Sum('particulate__sum')))['particulate_sum']
-    # print(alignment_amount)
-    # print(alignment_count)
     washing_m = Bill.objects.filter(particulate__particulrs='Washing', accountid=userl, created_at__month=m[1])
     washing_count_m = washing_m.count()
-    # washing_amount_d = washing.aggregate(Sum('particulate__sum'))['particulate__sum__sum']
     washing_amount_m = washing_m.aggregate(particulate_sum=Round(Sum('particulate__sum')))['particulate_sum']
     labour_amount_m = Bill.objects.filter(particulate__particulrs='Labour', accountid=userl, created_at__month=m[1]).aggregate(particulate_sum=Round(Sum('particulate__sum')))['particulate_sum']
     d =  dict()
@@ -202,3 +181,19 @@ def report_view(request):
     d['washing_amount_m'] = washing_amount_m
     d['labour_amount_m'] = labour_amount_m
     return JsonResponse(d)
+
+
+@csrf_exempt
+def search_view(request):
+  if request.POST:
+    return HttpResponse("OK")
+  else:
+    context = {}
+    data = request.GET["bill"]
+    userl = Account.objects.filter(email=request.user.email).first()
+    searchbill = list(Bill.objects.filter(accountid=userl,vehicleno=data).order_by('-created_at').values())
+    d = dict()
+    d['searchbill']=searchbill
+    return JsonResponse(d)
+    # context['search_bill'] = searchbill
+    # return render(request, 'usersystem/billing.html', context)
