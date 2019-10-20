@@ -1,0 +1,34 @@
+{% if bill_post %}
+  <div>
+      <div class="abstractB">
+          <div class="innerspan">
+            <span>Bill No.</span><span class="dontuse">{{bill_post.billno}}</span>
+          </div>
+          <div class="innerspan nonesmall">
+            <span>Name : </span><span class="dontuse">{{bill_post.name}}</span>
+          </div>
+          <div class="innerspan nonesmall">
+            <span>Date : </span><span class="dontuse">{{bill_post.created_at}}</span>
+          </div>
+          <div class="innerspan notshow">
+            <span>Email : </span><span class="dontuse">{{bill_post.email}}</span>
+          </div>
+          <div class="innerspan notshow">
+            <span>Mobile No. </span><span class="dontuse">{{bill_post.mobileno}}</span>
+          </div>
+          <div class="innerspan">
+            <span>Vehicle No. </span><span class="dontuse">{{bill_post.vehicleno}}</span>
+          </div>
+          <div class="innerspan notshow">
+            <span>Vehicle Name : </span><span class="dontuse">{{bill_post.vehiclename}}</span>
+          </div>
+          <div class="innerspan notshow">
+            <span>K M :</span><span class="dontuse">{{bill_post.km}}</span>
+          </div>
+          <div class="innerspan notshow">
+            <span>Total : </span><span class="dontuse">{{bill_post.total}}</span>
+          </div>
+        
+      </div>
+    </div>
+{% endif %}
