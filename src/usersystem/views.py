@@ -195,5 +195,3 @@ def search_view(request):
     d = dict()
     d['searchbill']=searchbill
     return JsonResponse(d)
-    # context['search_bill'] = searchbill
-    # return render(request, 'usersystem/billing.html', context)
